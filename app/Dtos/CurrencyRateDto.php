@@ -10,7 +10,7 @@ class CurrencyRateDto extends DtoTemplate
     public float $amount;
     public array $currencies = [];
 
-    public static function fromEntity(CurrencyEntity $currencyEntity)
+    public static function fromEntity(CurrencyEntity $currencyEntity): static
     {
         return new static([
             'baseCurrencyCode' => $currencyEntity->getCode(),

@@ -14,9 +14,9 @@ class ApiLayerExceptionHandler implements ApiExceptionHandlerInterface
     {
         $body = json_decode($exception->getResponse()->getBody(), true);
 
-        match ($body['code'] ?? '') {
-            self::INVALID_BASE_CURRENCY_CURRENCY_ERROR => new CurrencyNotFoundException('Invalid base currency was provided!', $exception->getRequest(), $exception->getResponse()),
-            self::INVALID_CURRENCY_CODES_ERROR => new CurrencyNotFoundException('One of the rate currencies is invalid!', $exception->getRequest(), $exception->getResponse()),
+        match ($body['error']['code'] ?? '') {
+            self::INVALID_BASE_CURRENCY_CURRENCY_ERROR => throw new CurrencyNotFoundException('Invalid base currency was provided!', $exception->getRequest(), $exception->getResponse()),
+            self::INVALID_CURRENCY_CODES_ERROR => throw new CurrencyNotFoundException('One of the rate currencies is invalid!', $exception->getRequest(), $exception->getResponse()),
             default => ''
         };
 

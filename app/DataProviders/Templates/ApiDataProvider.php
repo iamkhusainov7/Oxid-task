@@ -58,7 +58,7 @@ abstract class ApiDataProvider
                 continue;
             }
 
-            $url = preg_replace("/\{$key}/", (string)$value, $url);
+            $url = preg_replace("/\{$key}/", (string) $value, $url);
         }
 
         return $url;

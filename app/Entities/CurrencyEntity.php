@@ -79,13 +79,11 @@ class CurrencyEntity
     {
         $this->value = $value;
 
-        if ($this->currenciesRates) {
-            $this->currenciesRates->filter(
-                fn (CurrencyEntity $entity) => $entity !== $this
-            )->each(
-                fn (CurrencyEntity $entity) => $entity->setValue($value * $entity->getValue())
-            );
-        }
+        $this->currenciesRates?->filter(
+            fn (CurrencyEntity $entity) => $entity !== $this
+        )->each(
+            fn (CurrencyEntity $entity) => $entity->setValue($value * $entity->getValue())
+        );
 
         return $this;
     }
