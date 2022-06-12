@@ -24,6 +24,6 @@ class CurrencyConverterController extends Controller
 
         $currencies = array_map(fn ($value) => new CurrencyEntity($value, .0, new \DateTime()), $request->get('currencies', []));
 
-        return $this->responseHandler->handle($this->currencyProvider->getCurrencyRates($currency, ...$currencies));
+        return $this->responseHandler->format($this->currencyProvider->getCurrencyRates($currency, ...$currencies));
     }
 }
